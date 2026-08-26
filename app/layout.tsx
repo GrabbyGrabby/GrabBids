@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
 import './globals.css'
+import Footer from '@/components/Footer'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
 
@@ -21,9 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={geist.variable}>
-      <body className="min-h-screen bg-[#fdf8f5] text-gray-900 antialiased">
-        {children}
+      <body className="min-h-screen bg-[#fdf8f5] text-gray-900 antialiased flex flex-col justify-between">
+        <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   )
 }
+
