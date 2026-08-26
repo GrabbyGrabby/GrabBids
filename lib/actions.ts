@@ -2,12 +2,13 @@
 
 import { revalidatePath } from 'next/cache'
 import { createServiceClient } from '@/lib/supabase/server'
-import { stripe } from '@/lib/stripe'
+import { dodo } from '@/lib/dodo'
 import { normalizeUrl, getDisplayUrl, getFullUrl, getFaviconUrl } from '@/lib/utils'
 import type { Listing } from '@/types/database'
 
 const MIN_BID_CENTS = parseInt(process.env.MIN_BID_CENTS ?? '100', 10)
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
+const PRODUCT_ID = process.env.DODO_PAYMENTS_PRODUCT_ID ?? 'pdt_default'
 
 export type SubmitResult =
   | { success: true; checkoutUrl: string }
@@ -24,7 +25,7 @@ export interface SubmitFormData {
 
 /**
  * Main Server Action: submit or boost a listing.
- * All submission data is encoded in Stripe metadata — no pending_submissions table needed.
+ * All submission data is encoded in Dodo metadata — no pending_submissions table needed.
  * The DB rank is ONLY updated after the webhook confirms payment.
  */
 export async function submitOrBoostListing(data: SubmitFormData): Promise<SubmitResult> {
@@ -51,31 +52,22 @@ export async function submitOrBoostListing(data: SubmitFormData): Promise<Submit
 
   const isNewListing = !existing
 
-  // 3. Create Stripe Checkout session — embed ALL data in metadata
-  //    (avoids needing a pending_submissions table)
+  // 3. Create Dodo Payments Checkout session
   try {
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      payment_method_types: ['card'],
-      customer_email: data.submitterEmail || undefined,
-      line_items: [
+    const session = await dodo.checkoutSessions.create({
+      product_cart: [
         {
-          price_data: {
-            currency: 'usd',
-            unit_amount: data.amountCents,
-            product_data: {
-              name: isNewListing
-                ? `Submit "${data.title}" to GrabBids`
-                : `Boost "${existing!.display_url}" on GrabBids`,
-              description: isNewListing
-                ? `New listing: ${displayUrl}`
-                : `Boost from $${(existing!.total_bid_cents / 100).toFixed(0)} → +$${(data.amountCents / 100).toFixed(0)}`,
-            },
-          },
+          product_id: PRODUCT_ID,
           quantity: 1,
+          amount: data.amountCents,
         },
       ],
-      // All submission data lives here — webhook reads this to write the DB
+      customer: data.submitterEmail
+        ? {
+            email: data.submitterEmail.trim(),
+            name: data.title.trim().slice(0, 50),
+          }
+        : undefined,
       metadata: {
         url: normalizedUrl,
         display_url: displayUrl,
@@ -87,14 +79,18 @@ export async function submitOrBoostListing(data: SubmitFormData): Promise<Submit
         listing_id: existing?.id ?? '',
         submitter_email: data.submitterEmail?.trim() ?? '',
       },
-      success_url: `${APP_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `${APP_URL}/success`,
       cancel_url: `${APP_URL}/?cancelled=true`,
     })
 
-    return { success: true, checkoutUrl: session.url! }
+    if (!session.checkout_url) {
+      throw new Error('No checkout_url returned by Dodo Payments')
+    }
+
+    return { success: true, checkoutUrl: session.checkout_url }
   } catch (err) {
-    console.error('Stripe session creation failed:', err)
-    return { success: false, error: 'Payment setup failed. Please try again.' }
+    console.error('Dodo Payments checkout creation failed:', err)
+    return { success: false, error: 'Payment setup failed. Please check Dodo Payments configuration.' }
   }
 }
 
