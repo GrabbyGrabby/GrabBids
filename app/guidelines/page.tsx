@@ -91,7 +91,7 @@ export default function GuidelinesPage() {
               If you encounter a listing on GrabBids that links to malicious content, copyright violations, or prohibited material, please report it immediately:
             </p>
             <div className="text-xs text-amber-950 font-mono bg-white/80 p-3 rounded-lg border border-amber-200">
-              Email: <a href="mailto:abuse@grabbids.com" className="text-[#e85d26] underline font-bold">abuse@grabbids.com</a> or <a href="mailto:support@grabbids.com" className="text-[#e85d26] underline font-bold">support@grabbids.com</a><br />
+              Email: <a href="mailto:thedeadcurse@gmail.com" className="text-[#e85d26] underline font-bold">thedeadcurse@gmail.com</a><br />
               Please include the listing URL, listing title, and detailed reason for the report. All abuse reports are processed within 24 hours.
             </div>
           </section>

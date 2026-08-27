@@ -25,7 +25,7 @@ export default function Footer() {
               Privacy Policy
             </Link>
             <a
-              href="mailto:support@grabbids.com"
+              href="mailto:thedeadcurse@gmail.com"
               className="hover:text-[#e85d26] transition-colors"
             >
               Support & Abuse Reporting

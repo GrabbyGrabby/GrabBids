@@ -89,8 +89,8 @@ export default function TermsPage() {
             <h2 className="text-base font-bold text-gray-900 mb-2">7. Contact Information</h2>
             <p>
               For inquiries regarding these Terms or billing questions, please contact our support team at{' '}
-              <a href="mailto:support@grabbids.com" className="text-[#e85d26] font-medium underline">
-                support@grabbids.com
+              <a href="mailto:thedeadcurse@gmail.com" className="text-[#e85d26] font-medium underline">
+                thedeadcurse@gmail.com
               </a>.
             </p>
           </section>

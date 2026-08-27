@@ -58,8 +58,8 @@ export default function PrivacyPage() {
             <h2 className="text-base font-bold text-gray-900 mb-2">5. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please email us at{' '}
-              <a href="mailto:support@grabbids.com" className="text-[#e85d26] font-medium underline">
-                support@grabbids.com
+              <a href="mailto:thedeadcurse@gmail.com" className="text-[#e85d26] font-medium underline">
+                thedeadcurse@gmail.com
               </a>.
             </p>
           </section>
