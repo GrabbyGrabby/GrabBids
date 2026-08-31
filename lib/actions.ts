@@ -7,7 +7,10 @@ import { normalizeUrl, getDisplayUrl, getFullUrl, getFaviconUrl } from '@/lib/ut
 import type { Listing } from '@/types/database'
 
 const MIN_BID_CENTS = parseInt(process.env.MIN_BID_CENTS ?? '100', 10)
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
+const APP_URL =
+  process.env.APP_URL ??
+  process.env.NEXT_PUBLIC_APP_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://grab-bids.vercel.app')
 const PRODUCT_ID = process.env.DODO_PAYMENTS_PRODUCT_ID ?? 'pdt_0NmDHO3zIVN2k2NnSrHHo'
 
 export type SubmitResult =
