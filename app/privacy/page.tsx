@@ -28,8 +28,7 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
               <li><strong>Submission Details:</strong> Destination URL, project title, category, description, and logo/favicon URL.</li>
-              <li><strong>Payment Information:</strong> Transaction identifiers and payment status provided securely via our payment gateways (Dodo Payments / Stripe). We do not store raw credit card numbers.</li>
-              <li><strong>Usage & Analytics:</strong> Aggregate click counts and outbound referral events.</li>
+              <li><strong>Payment Information:</strong> Transaction identifiers and payment status provided securely via our payment gateway (Dodo Payments). We do not store raw credit card numbers.</li>
             </ul>
           </section>
 
@@ -43,7 +42,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-2">3. Third-Party Service Providers</h2>
             <p>
-              We partner with trusted service providers to process payments and host infrastructure (such as Supabase, Dodo Payments, and Stripe). These providers handle data strictly in accordance with their respective security and privacy standards.
+              We partner with trusted service providers to process payments and host infrastructure (such as Supabase and Dodo Payments). These providers handle data strictly in accordance with their respective security and privacy standards.
             </p>
           </section>
 

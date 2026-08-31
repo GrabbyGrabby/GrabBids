@@ -44,7 +44,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-2">3. Payment & Non-Refundable Policy</h2>
             <p>
-              All payments on GrabBids are processed securely via third-party payment processors (including Dodo Payments and Stripe).
+              All payments on GrabBids are processed securely via our payment provider Dodo Payments.
               By submitting a bid, you authorize the charge to your chosen payment method.
             </p>
             <p className="mt-2">

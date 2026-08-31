@@ -265,7 +265,7 @@ export default function SubmitDialog({ initialUrl = '', initialCategory = '', on
           </button>
 
           <p className="text-center text-xs text-gray-400">
-            Payments processed securely by Stripe. No account required.
+            Payments processed securely by Dodo Payments. No account required.
           </p>
         </form>
       </div>
