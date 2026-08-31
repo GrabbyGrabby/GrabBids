@@ -8,7 +8,7 @@ import type { Listing } from '@/types/database'
 
 const MIN_BID_CENTS = parseInt(process.env.MIN_BID_CENTS ?? '100', 10)
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
-const PRODUCT_ID = process.env.DODO_PAYMENTS_PRODUCT_ID ?? 'pdt_default'
+const PRODUCT_ID = process.env.DODO_PAYMENTS_PRODUCT_ID ?? 'pdt_0NmDHO3zIVN2k2NnSrHHo'
 
 export type SubmitResult =
   | { success: true; checkoutUrl: string }
