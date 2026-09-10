@@ -1,43 +1,46 @@
-import Link from 'next/link'
+"use client";
+
+import { Sparkles } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-orange-100 bg-white/70 backdrop-blur-sm mt-auto">
-      <div className="mx-auto max-w-6xl px-4 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-center md:text-left">
-            <Link href="/" className="text-base font-bold tracking-tight text-gray-900">
-              GrabBids
-            </Link>
-            <p className="text-xs text-gray-500 mt-0.5">
-              The pay-to-rank promotional leaderboard for web products and startups.
-            </p>
+    <footer className="px-4 py-12 border-t border-black/6 bg-[#fbf8f3]">
+      <div className="max-w-[1180px] mx-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* Brand */}
+          <div className="flex items-center gap-2">
+            <span className="w-7 h-7 rounded-xl bg-[#1f2a44] text-[#fbf8f3] flex items-center justify-center font-bold">
+              <Sparkles size={13} className="text-[#c6a75e]" />
+            </span>
+            <span className="text-sm font-bold tracking-tight text-[#17191d]">
+              grab<span className="text-[#1b5e48]">bids</span>
+            </span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-600 font-medium">
-            <Link href="/terms" className="hover:text-[#e85d26] transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="/guidelines" className="hover:text-[#e85d26] transition-colors">
-              Community Guidelines & Safety
-            </Link>
-            <Link href="/privacy" className="hover:text-[#e85d26] transition-colors">
-              Privacy Policy
-            </Link>
+          {/* Links */}
+          <div className="flex items-center gap-6 text-xs font-semibold text-[#6b7280]">
+            <a href="#leaderboard" className="hover:text-[#17191d] transition-colors">
+              Leaderboard
+            </a>
+            <a href="#how-it-works" className="hover:text-[#17191d] transition-colors">
+              How it works
+            </a>
             <a
-              href="mailto:thedeadcurse@gmail.com"
-              className="hover:text-[#e85d26] transition-colors"
+              href="https://x.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#17191d] transition-colors"
             >
-              Support & Abuse Reporting
+              Community
             </a>
           </div>
-        </div>
 
-        <div className="border-t border-gray-100 mt-6 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-400">
-          <p>© {new Date().getFullYear()} GrabBids. All rights reserved.</p>
-          <p>All listings are moderated and subject to our Acceptable Use Policy.</p>
+          {/* Copyright */}
+          <span className="text-[11px] font-semibold text-[#9ca3af] tracking-wider">
+            © {new Date().getFullYear()} GrabBids • Community Ranked
+          </span>
         </div>
       </div>
     </footer>
-  )
+  );
 }

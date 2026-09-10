@@ -1,49 +1,101 @@
 @import "tailwindcss";
 
-:root {
-  --background: #fdf8f5;
-  --foreground: #111111;
-  --brand: #e85d26;
-  --brand-dark: #d44f1a;
+@theme {
+  --color-bg: #fbf8f3;
+  --color-bg-subtle: #f5f0e6;
+  --color-surface: #ffffff;
+  --color-surface-cream: #f4eee3;
+  --color-surface-vanilla: #f0e7d5;
+  --color-surface-mint: #cfe9de;
+  --color-surface-lilac: #d4bcc8;
+  --color-midnight: #1f2a44;
+  --color-emerald: #1b5e48;
+  --color-cherry: #930507;
+  --color-slate-dark: #17191d;
+  --color-gold: #c6a75e;
+  --color-border: rgba(0, 0, 0, 0.07);
+  --color-border-strong: rgba(0, 0, 0, 0.12);
+  --color-text-main: #17191d;
+  --color-text-muted: #6b7280;
+  --color-text-faint: #9ca3af;
+
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-float: float 4s ease-in-out infinite;
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-brand: var(--brand);
-  --font-sans: var(--font-geist);
+:root {
+  --bg: #fbf8f3;
+  --surface: #ffffff;
+  --midnight: #1f2a44;
+  --emerald: #1b5e48;
+  --text-main: #17191d;
+  --text-muted: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #fbf8f3;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist), system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fbf8f3;
+  color: #17191d;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+::selection {
+  background: rgba(31, 42, 68, 0.15);
+  color: #17191d;
 }
 
-/* Custom scrollbar */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+button,
+select,
+textarea {
+  font: inherit;
+}
+
+input:focus-visible,
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #1f2a44;
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
-}
-
-/* Line clamp utility */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  background: rgba(0, 0, 0, 0.22);
 }

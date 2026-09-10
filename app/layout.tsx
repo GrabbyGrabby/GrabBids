@@ -1,16 +1,19 @@
 import type { Metadata } from 'next'
-import { Geist } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
-import Footer from '@/components/Footer'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-sans',
+})
 
 export const metadata: Metadata = {
-  title: 'GrabBids — Pay to Rank',
-  description: 'The pay-to-rank public leaderboard. Outbid everyone to claim the #1 spot.',
+  title: 'GrabBids — Modern Community Ranked Leaderboard',
+  description: 'Submit any link, SaaS, or project. Upvote the finest creations and climb to the #1 spot.',
   openGraph: {
-    title: 'GrabBids — Pay to Rank',
-    description: 'Outbid everyone to claim the #1 spot on the public leaderboard.',
+    title: 'GrabBids — Modern Community Leaderboard',
+    description: 'Submit any project or link and rise to the top with community upvotes.',
     type: 'website',
   },
 }
@@ -21,12 +24,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={geist.variable}>
-      <body className="min-h-screen bg-[#fdf8f5] text-gray-900 antialiased flex flex-col justify-between">
-        <div className="flex-1">{children}</div>
-        <Footer />
+    <html lang="en" className={jakarta.variable}>
+      <body className="min-h-screen bg-[#fbf8f3] text-[#17191d] antialiased selection:bg-[#1f2a44]/15 selection:text-[#17191d] font-sans">
+        {children}
       </body>
     </html>
   )
 }
-

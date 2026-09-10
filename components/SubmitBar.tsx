@@ -1,10 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { Globe } from 'lucide-react'
+import { Globe, ArrowUpRight, Zap } from 'lucide-react'
 import { CATEGORIES } from '@/types/database'
-import { submitOrBoostListing } from '@/lib/actions'
 import SubmitDialog from './SubmitDialog'
 
 export default function SubmitBar() {
@@ -19,43 +17,47 @@ export default function SubmitBar() {
 
   return (
     <>
-      <div className="flex gap-2 items-stretch bg-white border border-gray-200 rounded-2xl shadow-sm p-2">
-        {/* URL input */}
-        <div className="flex items-center gap-2 flex-1 px-3">
-          <Globe className="w-4 h-4 text-gray-400 flex-shrink-0" />
+      <div className="glass-nav rounded-2xl sm:rounded-full p-2 sm:p-2.5 shadow-2xl shadow-black/70 flex flex-col sm:flex-row gap-2 items-stretch border border-white/10 hover:border-white/20 transition-all duration-300">
+        {/* URL Input */}
+        <div className="flex items-center gap-3 flex-1 px-4 py-1.5">
+          <Globe className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            placeholder="Your product URL or @handle"
-            className="flex-1 text-sm outline-none bg-transparent placeholder:text-gray-400 text-gray-900 min-w-0"
+            placeholder="Enter your product URL or @handle..."
+            className="flex-1 text-sm outline-none bg-transparent placeholder:text-slate-500 text-white min-w-0 font-medium"
             onKeyDown={(e) => e.key === 'Enter' && handleOutbidClick()}
           />
         </div>
 
         {/* Category selector */}
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="text-sm text-gray-500 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 outline-none cursor-pointer hidden sm:block"
-        >
-          <option value="">Choose a category</option>
-          {CATEGORIES.map((cat) => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
-        </select>
+        <div className="hidden md:flex items-center">
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="text-xs font-semibold text-slate-300 bg-[#161926] border border-white/10 rounded-full px-4 py-2.5 outline-none cursor-pointer hover:border-white/20 focus:border-[#ff5e1e] transition-colors"
+          >
+            <option value="" className="bg-[#161926]">Category (Optional)</option>
+            {CATEGORIES.map((cat) => (
+              <option key={cat} value={cat} className="bg-[#161926]">{cat}</option>
+            ))}
+          </select>
+        </div>
 
-        {/* CTA button */}
+        {/* CTA Button */}
         <button
           onClick={handleOutbidClick}
           disabled={!url.trim()}
-          className="bg-[#e85d26] hover:bg-[#d44f1a] disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors whitespace-nowrap"
+          className="accent-glow-btn disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-sm px-6 py-3 sm:py-2.5 rounded-xl sm:rounded-full flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer shadow-lg"
         >
-          Outbid
+          <Zap className="w-4 h-4 fill-white" />
+          <span>Outbid</span>
+          <ArrowUpRight className="w-4 h-4 opacity-80" />
         </button>
       </div>
 
-      {/* Submit dialog */}
+      {/* Submit modal */}
       {dialogOpen && (
         <SubmitDialog
           initialUrl={url}
@@ -66,3 +68,4 @@ export default function SubmitBar() {
     </>
   )
 }
+
