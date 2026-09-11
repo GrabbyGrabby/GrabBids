@@ -87,12 +87,12 @@ export default function SubmitPage() {
         <div className={`relative w-full max-w-xl mx-auto ${shake ? "animate-shake" : ""}`}>
           
           {/* Form Card */}
-          <div className="relative bg-white border border-black/8 rounded-[32px] p-7 md:p-10 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+          <div className="relative bg-[#1f2a44] border border-black/8 rounded-[32px] p-7 md:p-10 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
             {/* Close Button */}
             {!success && (
               <button
                 onClick={() => window.location.href = "/"}
-                className="absolute top-6 right-6 md:top-8 md:right-8 w-10 h-10 rounded-full bg-[#fbf8f3] border border-black/5 flex items-center justify-center text-[#6b7280] hover:text-[#17191d] hover:bg-[#f0e7d5] transition-all cursor-pointer z-10"
+                className="absolute top-6 right-6 md:top-8 md:right-8 w-10 h-10 rounded-full bg-white/10 border border-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-all cursor-pointer z-10"
                 aria-label="Cancel submission"
               >
                 <X size={18} strokeWidth={2.5} />
@@ -104,30 +104,30 @@ export default function SubmitPage() {
                 <div className="w-16 h-16 rounded-full bg-[#cfe9de] text-[#1b5e48] flex items-center justify-center mb-6">
                   <CheckCircle2 size={36} />
                 </div>
-                <h3 className="text-2xl font-bold text-[#17191d] mb-2">Link Submitted!</h3>
-                <p className="text-sm text-[#6b7280] font-medium max-w-xs">
+                <h3 className="text-2xl font-bold text-white mb-2">Link Submitted!</h3>
+                <p className="text-sm text-[#9ca3af] font-medium max-w-xs">
                   Your project has been listed on the leaderboard with 1 upvote. Redirecting...
                 </p>
               </div>
             ) : (
               <>
-                <div className="flex items-center gap-2 mb-2 text-[#1b5e48]">
+                <div className="flex items-center gap-2 mb-2 text-[#8eb69b]">
                   <Sparkles size={18} />
                   <span className="text-[11px] font-bold tracking-[2px] uppercase">
                     FREE SUBMISSION
                   </span>
                 </div>
 
-                <h2 className="text-3xl font-extrabold tracking-tight text-[#17191d] mb-2">
+                <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2">
                   Submit Your Link
                 </h2>
-                <p className="text-sm text-[#6b7280] font-medium mb-8">
+                <p className="text-sm text-[#9ca3af] font-medium mb-8">
                   Add your SaaS, X profile, blog, or project. Anyone can upvote it to #1.
                 </p>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   <div>
-                    <label className="block text-xs font-bold text-[#17191d] uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-bold text-[#fbf8f3] uppercase tracking-wider mb-2">
                       Project / Creator Name *
                     </label>
                     <input
@@ -143,7 +143,7 @@ export default function SubmitPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#17191d] uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-bold text-[#fbf8f3] uppercase tracking-wider mb-2">
                       Link / URL *
                     </label>
                     <div className="relative">
@@ -160,7 +160,7 @@ export default function SubmitPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#17191d] uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-bold text-[#fbf8f3] uppercase tracking-wider mb-2">
                       Tagline / Pitch <span className="text-[#9ca3af] font-normal">(optional)</span>
                     </label>
                     <input
@@ -174,7 +174,7 @@ export default function SubmitPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#17191d] uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-bold text-[#fbf8f3] uppercase tracking-wider mb-2">
                       Contact Email <span className="text-[#9ca3af] font-normal">(optional)</span>
                     </label>
                     <input
@@ -211,7 +211,7 @@ export default function SubmitPage() {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="flex-[2] flex items-center justify-center gap-2 py-4 rounded-2xl bg-[#1f2a44] !text-white font-extrabold tracking-wide text-sm hover:bg-[#151c30] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer shadow-md"
+                      className="flex-[2] flex items-center justify-center gap-2 py-4 rounded-2xl bg-[#DFB6B2] !text-[#17191d] font-extrabold tracking-wide text-sm hover:brightness-95 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer shadow-md"
                     >
                       {submitting ? (
                         <>

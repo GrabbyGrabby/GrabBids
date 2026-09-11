@@ -7,7 +7,7 @@ const steps = [
   {
     icon: Link2,
     step: "01",
-    label: "MINT MIST",
+    label: "SUBMIT",
     title: "Submit any link",
     description: "Enter any X handle, website, SaaS product, newsletter, GitHub repo, or creator portfolio.",
     bg: "bg-[#cfe9de]",
@@ -17,7 +17,7 @@ const steps = [
   {
     icon: ThumbsUp,
     step: "02",
-    label: "VANILLA CREAM",
+    label: "VOTE",
     title: "Collect upvotes",
     description: "Share with your network, audience, and community to gather upvotes in real-time.",
     bg: "bg-[#f0e7d5]",
@@ -27,7 +27,7 @@ const steps = [
   {
     icon: Sparkles,
     step: "03",
-    label: "MIDNIGHT INDIGO",
+    label: "RANK",
     title: "Claim the #1 spot",
     description: "Top voted links secure the permanent crown and maximum spotlight on the leaderboard.",
     bg: "bg-[#1f2a44]",
