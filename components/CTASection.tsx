@@ -1,46 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-export default function CTASection({
-  onClaimClick,
-}: {
-  onClaimClick?: () => void;
-}) {
+export default function CTASection() {
   return (
-    <section className="px-4 py-20 max-w-[1180px] mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative text-center p-12 md:p-16 rounded-[36px] bg-[#1f2a44] text-[#fbf8f3] shadow-[0_12px_40px_rgba(31,42,68,0.12)] border border-[#1f2a44]"
-      >
-        <div className="relative z-10 max-w-xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-xs font-bold text-[#c6a75e] tracking-wider uppercase mb-5">
-            <Sparkles size={13} />
-            OPEN DIRECTORY
+    <section className="px-4 py-24 md:py-32">
+      <div className="max-w-4xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="bg-[#1f2a44] text-[#fbf8f3] rounded-[40px] md:rounded-[48px] p-10 md:p-20 relative overflow-hidden shadow-2xl"
+        >
+          {/* Background decoration */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-white/5 rounded-full blur-[80px] pointer-events-none -translate-y-1/2" />
+          
+          <div className="relative z-10">
+            <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight leading-[1.05] mb-6">
+              Ready to climb the <br className="hidden sm:block" />
+              <span className="text-[#c6a75e]">community board?</span>
+            </h2>
+            
+            <p className="text-white/60 text-sm md:text-base font-medium max-w-lg mx-auto mb-10">
+              Submit your project today. It's completely free, requires no signup, and takes less than 30 seconds.
+            </p>
+
+            <a
+              href="/submit"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#EBE4D5] !text-[#17191d] font-bold tracking-tight text-[15px] hover:bg-[#DFD8C7] hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 shadow-xl cursor-pointer"
+            >
+              List your product
+            </a>
           </div>
-
-          <h2 className="text-[clamp(28px,4.5vw,44px)] font-extrabold tracking-tight leading-tight mb-4 text-[#fbf8f3]">
-            Ready to get
-            <br />
-            <span className="text-[#cfe9de]">discovered?</span>
-          </h2>
-          <p className="text-sm text-white/80 font-medium leading-relaxed mb-8">
-            Submit your link for free and invite your community to vote your project up to the top spot.
-          </p>
-
-          <button
-            onClick={onClaimClick}
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#cfe9de] text-[#1b5e48] font-extrabold text-sm hover:bg-white hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 shadow-md cursor-pointer"
-          >
-            Submit your link now
-            <ArrowUpRight size={17} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </button>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp, ExternalLink, Sparkles, Heart, Crown } from "lucide-react";
+import gsap from "gsap";
 
 interface Listing {
   id: string | number;
@@ -10,6 +11,7 @@ interface Listing {
   product_url: string;
   tagline: string;
   upvotes: number;
+  clicks?: number;
   created_at: string;
   email?: string;
 }
@@ -59,6 +61,17 @@ export default function Leaderboard() {
     return () => clearInterval(interval);
   }, [fetchListings]);
 
+  // GSAP animation for initial load
+  useEffect(() => {
+    if (!loading && listings.length > 0) {
+      gsap.fromTo(
+        ".leaderboard-card",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "back.out(1.2)", clearProps: "all" }
+      );
+    }
+  }, [loading]);
+
   const handleUpvote = async (listingId: string | number, e: React.MouseEvent) => {
     e.stopPropagation();
     const strId = String(listingId);
@@ -94,6 +107,21 @@ export default function Leaderboard() {
     }
   };
 
+  const handleCardClick = async (listing: Listing) => {
+    window.open(listing.product_url, "_blank");
+    try {
+      await fetch("/api/click", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: listing.id }),
+      });
+      // Optimistically update clicks
+      setListings(prev => 
+        prev.map(l => l.id === listing.id ? { ...l, clicks: (l.clicks || 0) + 1 } : l)
+      );
+    } catch (err) {}
+  };
+
   return (
     <section id="leaderboard" className="px-4 py-20 md:py-28 max-w-[960px] mx-auto">
       {/* Header */}
@@ -113,9 +141,6 @@ export default function Leaderboard() {
             The <span className="text-[#1b5e48]">Leaderboard</span>
           </h2>
         </div>
-        <span className="text-xs font-semibold text-[#6b7280] bg-white px-3.5 py-1.5 rounded-full border border-black/6 shadow-xs">
-          {listings.length} {listings.length === 1 ? "entry" : "entries"} ranked
-        </span>
       </motion.div>
 
       {/* List */}
@@ -144,77 +169,69 @@ export default function Leaderboard() {
           <AnimatePresence mode="popLayout">
             {listings.map((listing, index) => {
               const rank = index + 1;
+              const rankLabel = `#${rank}`;
               const hasVoted = upvotedIds.has(String(listing.id));
+              const clicks = listing.clicks ?? 0;
 
-              // Distinct modern styling per top 3
-              let cardStyle = "bg-white border-black/6 text-[#17191d] hover:border-black/15 shadow-[0_4px_20px_rgba(0,0,0,0.02)]";
-              let badgeColor = "bg-black/5 text-[#6b7280]";
+              let cardStyle = "bg-[#F0E7D5] border-transparent text-[#17191D] hover:shadow-md z-0";
+              let rankStyle = "bg-[#E8DCC8] text-[#1F2A44]";
+              let subtitleStyle = "text-[#1F2A44]/70";
+              let timeStyle = "text-[#1F2A44]/60";
               let upvoteActiveStyle = hasVoted
-                ? "bg-[#1f2a44] text-white border-transparent shadow-sm"
-                : "bg-[#f5f0e6] text-[#17191d] hover:bg-[#1f2a44] hover:text-white border-black/5";
+                ? "bg-[#1F2A44] text-[#E8DCC8] font-bold border-transparent"
+                : "bg-white/60 text-[#1F2A44] hover:bg-[#1F2A44] hover:text-[#E8DCC8] border-transparent";
 
-              if (rank === 1) {
-                cardStyle = "bg-[#1f2a44] border-transparent text-[#fbf8f3] shadow-[0_12px_36px_rgba(31,42,68,0.18)]";
-                badgeColor = "bg-[#c6a75e]/25 text-[#f0e7d5]";
+              if (index === 0) {
+                cardStyle = "bg-[#1F2A44] border-transparent text-[#E8DCC8] shadow-[0_12px_36px_rgba(31,42,68,0.18)] hover:-translate-y-1 scale-[1.02] md:scale-[1.04] z-10 my-4 md:my-6";
+                rankStyle = "bg-[#C6A75E] text-[#1F2A44] shadow-lg";
+                subtitleStyle = "text-[#E8DCC8]/70";
+                timeStyle = "text-[#E8DCC8]/60";
                 upvoteActiveStyle = hasVoted
-                  ? "bg-[#c6a75e] text-[#1f2a44] font-bold shadow-md"
-                  : "bg-white/10 text-[#fbf8f3] hover:bg-[#c6a75e] hover:text-[#1f2a44] border-white/15";
-              } else if (rank === 2) {
-                cardStyle = "bg-[#cfe9de] border-transparent text-[#1b5e48] shadow-[0_8px_24px_rgba(27,94,72,0.06)]";
-                badgeColor = "bg-[#1b5e48]/15 text-[#1b5e48]";
+                  ? "bg-[#C6A75E] text-[#1F2A44] font-bold shadow-md border-transparent"
+                  : "bg-white/10 text-[#E8DCC8] hover:bg-[#C6A75E] hover:text-[#1F2A44] border-transparent";
+              } else if (index === 1) {
+                cardStyle = "bg-[#D4BCC8] border-transparent text-[#17191D] shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 scale-[1.01] z-0";
+                rankStyle = "bg-[#17191D] text-[#D4BCC8] shadow-md";
+                subtitleStyle = "text-[#17191D]/70";
+                timeStyle = "text-[#17191D]/60";
                 upvoteActiveStyle = hasVoted
-                  ? "bg-[#1b5e48] text-white font-bold"
-                  : "bg-white/70 text-[#1b5e48] hover:bg-[#1b5e48] hover:text-white border-black/5";
-              } else if (rank === 3) {
-                cardStyle = "bg-[#f0e7d5] border-transparent text-[#17191d] shadow-[0_6px_20px_rgba(0,0,0,0.03)]";
-                badgeColor = "bg-black/8 text-[#17191d]";
+                  ? "bg-[#17191D] text-[#D4BCC8] font-bold border-transparent"
+                  : "bg-white/50 text-[#17191D] hover:bg-[#17191D] hover:text-[#D4BCC8] border-transparent";
+              } else if (index === 2) {
+                cardStyle = "bg-[#8EB69B] border-transparent text-[#051F20] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-0.5 z-0";
+                rankStyle = "bg-[#051F20] text-[#8EB69B] shadow-sm";
+                subtitleStyle = "text-[#051F20]/70";
+                timeStyle = "text-[#051F20]/60";
                 upvoteActiveStyle = hasVoted
-                  ? "bg-[#1f2a44] text-white font-bold"
-                  : "bg-white/80 text-[#17191d] hover:bg-[#1f2a44] hover:text-white border-black/5";
+                  ? "bg-[#051F20] text-[#8EB69B] font-bold border-transparent"
+                  : "bg-white/50 text-[#051F20] hover:bg-[#051F20] hover:text-[#8EB69B] border-transparent";
               }
 
               return (
                 <motion.div
                   key={listing.id}
                   layout
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.35, delay: index * 0.04, ease: "easeOut" }}
-                  className={`group relative flex items-center justify-between gap-4 p-5 md:p-6 rounded-[28px] border transition-all duration-200 hover:-translate-y-0.5 ${cardStyle}`}
+                  onClick={() => handleCardClick(listing)}
+                  className={`leaderboard-card group relative flex items-center justify-between gap-4 p-5 md:p-6 rounded-[28px] border transition-all duration-200 cursor-pointer ${cardStyle}`}
                 >
                   {/* Left: Rank + Info */}
-                  <div className="flex items-center gap-4 min-w-0 flex-1">
+                  <div className="flex items-center gap-4 md:gap-6 min-w-0 flex-1">
                     {/* Rank Badge */}
-                    <div className={`w-10 h-10 rounded-2xl flex items-center justify-center font-extrabold text-xs flex-shrink-0 ${badgeColor}`}>
-                      {rank === 1 ? (
-                        <Crown size={16} className="text-[#c6a75e]" />
-                      ) : rank === 2 ? (
-                        <Heart size={14} className="fill-current text-[#930507]" />
-                      ) : (
-                        <span>#{rank}</span>
-                      )}
+                    <div className={`w-10 h-10 md:w-12 md:h-12 rounded-2xl flex items-center justify-center font-extrabold text-sm md:text-base flex-shrink-0 ${rankStyle}`}>
+                      <span>{rankLabel}</span>
                     </div>
 
-                    {/* Title + Tagline (Link text hidden) */}
+                    {/* Title + Tagline */}
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <a
-                          href={listing.product_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-base font-bold truncate leading-tight hover:underline flex items-center gap-1.5 group/link"
-                        >
-                          <span className="truncate">{listing.product_name}</span>
-                          <ExternalLink size={13} className="opacity-40 group-hover/link:opacity-100 transition-opacity flex-shrink-0" />
-                        </a>
+                        <span className="text-base font-bold truncate leading-tight flex items-center gap-1.5">
+                          {listing.product_name}
+                          <ExternalLink size={13} className="opacity-40 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                        </span>
                       </div>
-
-                      {listing.tagline && (
-                        <p className={`text-xs truncate font-medium ${rank === 1 ? "text-white/70" : "text-[#6b7280]"}`}>
-                          {listing.tagline}
-                        </p>
-                      )}
+                      <p className={`text-[13px] font-medium truncate ${subtitleStyle}`}>
+                        {listing.tagline} <span className="opacity-40 mx-1.5">•</span> {clicks.toLocaleString()} clicks
+                      </p>
                     </div>
                   </div>
 
@@ -230,10 +247,9 @@ export default function Leaderboard() {
                         className={`transition-transform ${hasVoted ? "stroke-[3]" : "group-hover:-translate-y-0.5"}`}
                       />
                       <span className="tabular-nums">{listing.upvotes ?? 1}</span>
-                      {hasVoted && <Heart size={12} className="fill-current text-rose-500 ml-0.5" />}
                     </button>
 
-                    <span className={`text-[10px] tabular-nums font-semibold pr-1 ${rank === 1 ? "text-white/50" : "text-[#9ca3af]"}`}>
+                    <span className={`text-[10px] tabular-nums font-semibold pr-1 ${timeStyle}`}>
                       {timeAgo(listing.created_at)}
                     </span>
                   </div>

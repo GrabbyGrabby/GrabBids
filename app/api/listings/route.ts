@@ -23,6 +23,7 @@ export async function GET() {
       product_url: getFullUrl(item.product_url || item.url || "#"),
       tagline: item.tagline || item.description || "",
       upvotes: item.amount_paid ?? 1,
+      clicks: item.clicks ?? 0,
       created_at: item.created_at,
       email: item.email,
     }));

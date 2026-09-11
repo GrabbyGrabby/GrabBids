@@ -1,7 +1,5 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
-
 export default function Footer() {
   return (
     <footer className="px-4 py-12 border-t border-black/6 bg-[#fbf8f3]">
@@ -9,11 +7,8 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* Brand */}
           <div className="flex items-center gap-2">
-            <span className="w-7 h-7 rounded-xl bg-[#1f2a44] text-[#fbf8f3] flex items-center justify-center font-bold">
-              <Sparkles size={13} className="text-[#c6a75e]" />
-            </span>
             <span className="text-sm font-bold tracking-tight text-[#17191d]">
-              grab<span className="text-[#1b5e48]">bids</span>
+              Grab<span className="text-[#1b5e48]">Bids</span>
             </span>
           </div>
 

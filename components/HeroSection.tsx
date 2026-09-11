@@ -34,9 +34,9 @@ export default function HeroSection({
           {...reveal(0.1)}
           className="text-[clamp(42px,6.5vw,78px)] font-extrabold leading-[1.02] tracking-[-2.5px] mb-6 text-[#17191d]"
         >
-          Rank the finest.
+          Top Products.
           <br />
-          <span className="text-[#1b5e48]">Curated by the crowd.</span>
+          <span className="text-[#1b5e48]">Chosen by you.</span>
         </motion.h1>
 
         {/* Description */}
@@ -49,18 +49,17 @@ export default function HeroSection({
         </motion.p>
 
         {/* Action Button & Proof */}
-        <motion.div {...reveal(0.3)} className="flex flex-col items-center gap-5">
+        <motion.div {...reveal(0.3)} className="flex flex-col items-center gap-5 mt-10 md:mt-14">
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={onClaimClick}
-              className="group flex items-center gap-3 px-8 py-4 rounded-full bg-[#1f2a44] text-[#fbf8f3] font-bold text-sm hover:bg-[#151c30] hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 shadow-[0_8px_24px_rgba(31,42,68,0.12)] cursor-pointer"
+            <a
+              href="/submit"
+              className="group flex items-center gap-3 px-8 py-4 rounded-full bg-[#1b5e48] !text-white font-bold tracking-tight text-[15px] hover:bg-[#124233] hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 shadow-[0_8px_24px_rgba(27,94,72,0.12)] cursor-pointer"
             >
               Submit your link
-              <ArrowUpRight size={17} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
+            </a>
             <a
-              href="#leaderboard"
-              className="px-8 py-4 rounded-full bg-white border border-black/8 text-[#17191d] font-bold text-sm hover:bg-[#f5f0e6] transition-all duration-200 shadow-xs"
+              href="/#leaderboard"
+              className="px-8 py-4 rounded-full bg-[#1f2a44] border border-transparent !text-white font-bold tracking-tight text-[15px] hover:bg-[#151c30] transition-all duration-200 shadow-[0_8px_24px_rgba(31,42,68,0.12)]"
             >
               View rankings
             </a>

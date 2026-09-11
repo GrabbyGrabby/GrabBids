@@ -53,7 +53,6 @@ export default function SubmitBar() {
         >
           <Zap className="w-4 h-4 fill-white" />
           <span>Outbid</span>
-          <ArrowUpRight className="w-4 h-4 opacity-80" />
         </button>
       </div>
 
