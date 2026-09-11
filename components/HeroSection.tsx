@@ -34,9 +34,9 @@ export default function HeroSection({
           {...reveal(0.1)}
           className="text-[clamp(42px,6.5vw,78px)] font-extrabold leading-[1.02] tracking-[-2.5px] mb-6 text-[#17191d]"
         >
-          Top Products.
+          Great Products
           <br />
-          <span className="text-[#1b5e48]">Chosen by you.</span>
+          <span className="text-[#1b5e48]">Deserves The Spotlight</span>
         </motion.h1>
 
         {/* Description */}
@@ -44,8 +44,7 @@ export default function HeroSection({
           {...reveal(0.2)}
           className="text-[#6b7280] text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10 font-medium"
         >
-          Submit any link — your SaaS, X profile, tool, portfolio, or project.
-          The community votes on the best creations to reach the #1 spot.
+          Enter The Arena . Claim The Crown
         </motion.p>
 
         {/* Action Button & Proof */}
