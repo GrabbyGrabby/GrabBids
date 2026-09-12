@@ -149,13 +149,6 @@ export default function ClaimSpotForm({ isOpen, onClose, onSubmitted }: ClaimSpo
                   </div>
                 ) : (
                   <>
-                    <div className="flex items-center gap-2 mb-1 text-[#1b5e48]">
-                      <Sparkles size={18} />
-                      <span className="text-[11px] font-bold tracking-[2px] uppercase">
-                        FREE SUBMISSION
-                      </span>
-                    </div>
-
                     <h2 className="text-2xl font-extrabold tracking-tight text-[#17191d] mb-1">
                       Submit Your Link
                     </h2>

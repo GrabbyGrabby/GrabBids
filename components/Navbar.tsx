@@ -41,13 +41,13 @@ export default function Navbar({ onClaimClick }: { onClaimClick?: () => void }) 
         <nav className="hidden md:flex items-center gap-1.5 px-2 py-1.5 rounded-full border border-black/10 bg-white shadow-sm">
           <a
             href="/#leaderboard"
-            className="px-5 py-2 rounded-full text-xs font-bold text-[#17191d] hover:bg-[#f5f0e6] transition-all duration-200"
+            className="px-5 py-2 rounded-full text-xs font-bold text-[#17191d] hover:bg-[#1f2a44] hover:!text-white transition-all duration-200"
           >
             Leaderboard
           </a>
           <a
             href="/how-it-works"
-            className="px-5 py-2 rounded-full text-xs font-bold text-[#17191d] hover:bg-[#f5f0e6] transition-all duration-200 cursor-pointer"
+            className="px-5 py-2 rounded-full text-xs font-bold text-[#17191d] hover:bg-[#1f2a44] hover:!text-white transition-all duration-200 cursor-pointer"
           >
             How it works
           </a>
@@ -65,7 +65,7 @@ export default function Navbar({ onClaimClick }: { onClaimClick?: () => void }) 
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2.5 rounded-2xl bg-white border border-black/6 text-[#17191d] hover:bg-[#f5f0e6] transition-colors cursor-pointer"
+            className="md:hidden p-2.5 rounded-2xl bg-white border border-black/6 text-[#17191d] hover:bg-[#1f2a44] hover:!text-white transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {menuOpen ? <X size={18} /> : <Menu size={18} />}
@@ -87,14 +87,14 @@ export default function Navbar({ onClaimClick }: { onClaimClick?: () => void }) 
               <a
                 href="/#leaderboard"
                 onClick={() => setMenuOpen(false)}
-                className="px-4 py-3 rounded-2xl text-sm font-bold text-[#17191d] hover:bg-[#f5f0e6] transition-colors"
+                className="px-4 py-3 rounded-2xl text-sm font-bold text-[#17191d] hover:bg-[#1f2a44] hover:!text-white transition-colors"
               >
                 Leaderboard
               </a>
               <a
                 href="/how-it-works"
                 onClick={() => setMenuOpen(false)}
-                className="px-4 py-3 text-left rounded-2xl text-sm font-bold text-[#17191d] hover:bg-[#f5f0e6] transition-colors"
+                className="px-4 py-3 text-left rounded-2xl text-sm font-bold text-[#17191d] hover:bg-[#1f2a44] hover:!text-white transition-colors"
               >
                 How it works
               </a>

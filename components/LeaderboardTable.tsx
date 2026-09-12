@@ -137,11 +137,6 @@ export default function LeaderboardTable({ listings, activeCategory }: Leaderboa
                     <span className="text-slate-600">•</span>
                     <span className="text-slate-400 truncate max-w-[140px] sm:max-w-none">{listing.display_url}</span>
                     <span className="text-slate-600">•</span>
-                    <span className="inline-flex items-center gap-1">
-                      <MousePointerClick className="w-3 h-3 text-slate-400" />
-                      <span>{listing.click_count.toLocaleString()} clicks</span>
-                    </span>
-                    <span className="text-slate-600">•</span>
                     <span>{timeAgo(listing.last_bid_at)}</span>
                   </div>
                 </div>

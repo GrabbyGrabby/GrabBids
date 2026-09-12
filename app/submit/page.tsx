@@ -111,13 +111,6 @@ export default function SubmitPage() {
               </div>
             ) : (
               <>
-                <div className="flex items-center gap-2 mb-2 text-[#8eb69b]">
-                  <Sparkles size={18} />
-                  <span className="text-[11px] font-bold tracking-[2px] uppercase">
-                    FREE SUBMISSION
-                  </span>
-                </div>
-
                 <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2">
                   Submit Your Link
                 </h2>

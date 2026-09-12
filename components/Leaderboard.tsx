@@ -230,7 +230,7 @@ export default function Leaderboard() {
                         </span>
                       </div>
                       <p className={`text-[13px] font-medium truncate ${subtitleStyle}`}>
-                        {listing.tagline} <span className="opacity-40 mx-1.5">•</span> {clicks.toLocaleString()} clicks
+                        {listing.tagline} 
                       </p>
                     </div>
                   </div>

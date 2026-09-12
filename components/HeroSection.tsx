@@ -49,7 +49,10 @@ export default function HeroSection({
 
         {/* Action Button & Proof */}
         <motion.div {...reveal(0.3)} className="flex flex-col items-center gap-5 mt-10 md:mt-14">
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <p className="text-sm md:text-base text-[#6b7280] tracking-wide font-medium max-w-2xl text-center">
+            Submit any link - Your Saas , Github Profile , Tools , Portfolio Or Projects . The Community votes on the best creations to reach the #1 spot .
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
             <a
               href="/submit"
               className="group flex items-center gap-3 px-8 py-4 rounded-full bg-[#1b5e48] !text-white font-bold tracking-tight text-[15px] hover:bg-[#124233] hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 shadow-[0_8px_24px_rgba(27,94,72,0.12)] cursor-pointer"
@@ -63,10 +66,6 @@ export default function HeroSection({
               View rankings
             </a>
           </div>
-
-          <p className="text-xs text-[#9ca3af] tracking-wide font-medium mt-3">
-            {totalListings > 0 ? `${totalListings} projects listed` : "100% free submission"} • Real-time Supabase voting
-          </p>
         </motion.div>
       </div>
     </section>
