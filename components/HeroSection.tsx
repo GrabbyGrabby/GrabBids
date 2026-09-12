@@ -42,7 +42,7 @@ export default function HeroSection({
         {/* Description */}
         <motion.p
           {...reveal(0.2)}
-          className="text-[#6b7280] text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10 font-medium"
+          className="text-black text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10 font-bold"
         >
           Enter The Arena . Claim The Crown
         </motion.p>
@@ -50,9 +50,9 @@ export default function HeroSection({
         {/* Action Button & Proof */}
         <motion.div {...reveal(0.3)} className="flex flex-col items-center gap-5 mt-10 md:mt-14">
           <p className="text-sm md:text-base text-[#6b7280] tracking-wide font-medium max-w-2xl text-center">
-            Submit any link - Your Saas , Github Profile , Tools , Portfolio Or Projects . The Community votes on the best creations to reach the #1 spot .
+            Submit any link - Your Saas , Github Profile , Tools , Portfolio or Projects . The Community votes on the best creations to reach the #1 spot .
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-12 md:mt-20">
             <a
               href="/submit"
               className="group flex items-center gap-3 px-8 py-4 rounded-full bg-[#1b5e48] !text-white font-bold tracking-tight text-[15px] hover:bg-[#124233] hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 shadow-[0_8px_24px_rgba(27,94,72,0.12)] cursor-pointer"
